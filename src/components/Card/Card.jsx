@@ -4,7 +4,6 @@ import React, { memo } from "react";
 import classes from "./Card.module.css";
 
 const Card = ({ id, keyValue, hide, complited, clickHandler, img }) => {
-  console.log("card render");
   const hideClass = hide
     ? `${classes.card}`
     : `${classes.card} ${classes.flip}`;
