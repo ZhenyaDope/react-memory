@@ -1,3 +1,7 @@
+# Demo project
+
+Link to the project - https://zhenyadope.github.io/react-memory
+
 # Description:
 
 The page consists of a board of tiles (default 4x4).
