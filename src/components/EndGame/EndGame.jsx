@@ -34,7 +34,7 @@ const EndGame = () => {
   const clickHandler = useCallback(() => {
     dispatch(clearCounter());
     dispatch(newGame());
-  }, [endGame]);
+  }, []);
 
   return (
     <div className={classes.endGame}>

@@ -30,7 +30,6 @@ const intialState = {
     { key: "github", id: 15, hide: true, complited: false, img: github },
     { key: "node", id: 16, hide: true, complited: false, img: node },
   ],
-  isShuffle: false,
 };
 
 const cardsReducer = (state = intialState, action) => {
@@ -50,7 +49,7 @@ const cardsReducer = (state = intialState, action) => {
         }),
       };
     case RESET_CARD_ARRAY:
-      return { ...state, cards: payload, isShuffle: true };
+      return { ...state, cards: payload };
 
     default:
       return state;
