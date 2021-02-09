@@ -1,0 +1,28 @@
+.endGame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  color: #52595f;
+}
+.btn {
+  background: linear-gradient(135deg, #5efce8 0%, #736efe 100%);
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.5s;
+  outline: none;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+.btn:active {
+  outline: none;
+}

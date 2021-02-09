@@ -1,0 +1,47 @@
+.card {
+  background: #52595f;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 90px;
+  height: 90px;
+  list-style: none;
+  transform-style: preserve-3d;
+  perspective: 400px;
+  transition: all 1s;
+  user-select: none;
+  cursor: pointer;
+}
+
+.front {
+  transform: rotateX(0deg);
+  border-radius: 10px;
+}
+.back {
+  transform: rotateX(-180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #52595f;
+  font-size: 24px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.flip {
+  transform: rotateX(180deg);
+}
+
+.complited {
+  opacity: 0;
+  transition: 1s;
+  visibility: hidden;
+}

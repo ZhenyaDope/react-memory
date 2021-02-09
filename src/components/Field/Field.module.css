@@ -1,0 +1,36 @@
+.field {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(135deg, #5efce8 0%, #736efe 100%);
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+
+.cardList {
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.notification_wrapper {
+  position: absolute;
+  top: -100px;
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.message {
+  position: absolute;
+  top: -200px;
+  left: -100px;
+}
