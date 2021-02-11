@@ -4,14 +4,12 @@ import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  setCardArray,
+  setCardsArray,
   addCard,
   clear,
-  complited,
-  unComplited,
   endGame,
   addCounter,
-  resetCardArray,
+  resetCardsArray,
 } from "../../store/actions/actions";
 
 // Components
@@ -38,7 +36,7 @@ const Field = () => {
 
   useEffect(() => {
     const shuffleCardArray = shuffle(cardArray);
-    dispatch(resetCardArray(shuffleCardArray));
+    dispatch(resetCardsArray(shuffleCardArray));
   }, []);
 
   // Output of game's end
@@ -71,8 +69,7 @@ const Field = () => {
         }
         return card;
       });
-      // Множественное ед число Cards
-      dispatch(setCardArray(newCardArray));
+      dispatch(setCardsArray(newCardArray));
     }, 1000);
   };
 
@@ -82,17 +79,13 @@ const Field = () => {
     if (firstCard.id === secondCard.id) {
       return;
     }
-    changeCard("complited");
+    changeCard("completed");
     dispatch(addCounter());
-    dispatch(complited());
   };
-
-  // COMPLETED===================================================
 
   // If the cards are not equal
   const resetSelectedCards = () => {
     changeCard("hide");
-    dispatch(unComplited());
   };
 
   // Click on the card
@@ -107,10 +100,10 @@ const Field = () => {
 
     // Add selected card to the [selectedArray]
     dispatch(addCard(selectCard));
-    dispatch(setCardArray(idCard));
+    dispatch(setCardsArray(idCard));
   }, []);
 
-  const cards = cardArray.map(({ id, key, hide, complited, img }) => {
+  const cards = cardArray.map(({ id, key, hide, completed, img }) => {
     return (
       <Card
         key={id}
@@ -118,7 +111,7 @@ const Field = () => {
         clickHandler={clickHandler}
         id={id}
         hide={hide}
-        complited={complited}
+        completed={completed}
         img={img}
       />
     );

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   newGame,
   clearCounter,
-  resetCardArray,
+  resetCardsArray,
 } from "../../store/actions/actions";
 
 // Assets
@@ -25,11 +25,11 @@ const EndGame = () => {
   useEffect(() => {
     if (gameOver) {
       const newCardArray = cardArray.map((card) => {
-        card.complited = !card.complited;
+        card.completed = !card.completed;
         card.hide = !card.hide;
         return card;
       });
-      dispatch(resetCardArray(newCardArray));
+      dispatch(resetCardsArray(newCardArray));
     }
   }, [gameOver]);
 
