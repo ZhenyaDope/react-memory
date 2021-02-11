@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   newGame,
   clearCounter,
-  endGame,
   resetCardArray,
 } from "../../store/actions/actions";
 
