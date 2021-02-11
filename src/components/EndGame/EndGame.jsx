@@ -16,11 +16,15 @@ const EndGame = () => {
   // Array with cards
   const cardArray = useSelector(({ cardsReducer }) => cardsReducer.cards);
 
+  const gameOver = useSelector(
+    ({ gameOverReducer }) => gameOverReducer.gameOver
+  );
+
   const dispatch = useDispatch();
 
   // Restart game
   useEffect(() => {
-    if (endGame) {
+    if (gameOver) {
       const newCardArray = cardArray.map((card) => {
         card.complited = !card.complited;
         card.hide = !card.hide;
@@ -28,9 +32,8 @@ const EndGame = () => {
       });
       dispatch(resetCardArray(newCardArray));
     }
-  }, [endGame]);
+  }, [gameOver]);
 
-  // Click on the button
   const clickHandler = useCallback(() => {
     dispatch(clearCounter());
     dispatch(newGame());

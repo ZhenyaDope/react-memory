@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -24,20 +24,18 @@ import { shuffle } from "../../helpers";
 import classes from "./Field.module.css";
 
 const Field = () => {
-  // Array with cards
   const cardArray = useSelector(({ cardsReducer }) => cardsReducer.cards);
 
-  // Array with selected cards
   const selectedCards = useSelector(
     ({ selectedCardsReducer }) => selectedCardsReducer.selectedCard
   );
 
-  // Round counter
-  const counter = useSelector(({ counterReducer }) => counterReducer.counter);
+  const roundCounter = useSelector(
+    ({ counterReducer }) => counterReducer.counter
+  );
 
   const dispatch = useDispatch();
 
-  // Shuffle array with cards before renders
   useEffect(() => {
     const shuffleCardArray = shuffle(cardArray);
     dispatch(resetCardArray(shuffleCardArray));
@@ -45,18 +43,20 @@ const Field = () => {
 
   // Output of game's end
   useEffect(() => {
-    if (counter === 8) {
+    if (roundCounter === 8) {
       setTimeout(() => {
         dispatch(endGame());
       }, 1500);
     }
-  }, [counter]);
+  }, [roundCounter]);
 
   // Checking cards for equality
   useEffect(() => {
     if (selectedCards.length === 2) {
       const [firstCard, secondCard] = selectedCards;
-      firstCard.key === secondCard.key ? complitedCard() : unCompletedCard();
+      firstCard.key === secondCard.key
+        ? completedCards()
+        : resetSelectedCards();
       dispatch(clear());
     }
   }, [selectedCards]);
@@ -71,12 +71,13 @@ const Field = () => {
         }
         return card;
       });
+      // Множественное ед число Cards
       dispatch(setCardArray(newCardArray));
     }, 1000);
   };
 
   // If the cards are equal
-  const complitedCard = () => {
+  const completedCards = () => {
     const [firstCard, secondCard] = selectedCards;
     if (firstCard.id === secondCard.id) {
       return;
@@ -86,8 +87,10 @@ const Field = () => {
     dispatch(complited());
   };
 
+  // COMPLETED===================================================
+
   // If the cards are not equal
-  const unCompletedCard = () => {
+  const resetSelectedCards = () => {
     changeCard("hide");
     dispatch(unComplited());
   };
@@ -107,8 +110,6 @@ const Field = () => {
     dispatch(setCardArray(idCard));
   }, []);
 
-  // Render cards
-
   const cards = cardArray.map(({ id, key, hide, complited, img }) => {
     return (
       <Card
@@ -122,6 +123,7 @@ const Field = () => {
       />
     );
   });
+
   return (
     <div className={classes.field}>
       <ul className={classes.cardList}>{cards}</ul>
